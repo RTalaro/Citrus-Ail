@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbartondsjpl5"]
+
+[ext_resource type="Texture2D" uid="uid://b67lho0vvrdyd" path="res://assets/scenes/scene1/walk1.png" id="1_fjlh2"]
+[ext_resource type="Texture2D" uid="uid://bo3j3h5vh6kof" path="res://assets/scenes/scene1/walk2.png" id="2_mpjk0"]
+[ext_resource type="Texture2D" uid="uid://blhuq73bhpf6d" path="res://assets/scenes/scene1/hair1.png" id="3_rjskg"]
+[ext_resource type="Texture2D" uid="uid://gbuus2cqfcuc" path="res://assets/scenes/scene1/walkhand1.png" id="3_ybvwm"]
+[ext_resource type="Texture2D" uid="uid://c1pldeu14fm7i" path="res://assets/scenes/scene1/hair2.png" id="4_8crw5"]
+[ext_resource type="Texture2D" uid="uid://dd0rpk3t5l667" path="res://assets/scenes/scene1/walkhand2.png" id="4_j8yn7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjskg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fjlh2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mpjk0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ybvwm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j8yn7")
+}],
+"loop": true,
+"name": &"walkhand",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ybvwm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rjskg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8crw5")
+}],
+"loop": true,
+"name": &"hair",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"turn",
+"speed": 5.0
+}]
+
+[node name="Ginger" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_rjskg")
+animation = &"walk"
+frame_progress = 0.776403
+speed_scale = 0.1
+
+[node name="Face" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.931898, 0.931897, 0.931897, 1)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_ybvwm")
+animation = &"hair"
+frame_progress = 0.560248
+speed_scale = 0.1

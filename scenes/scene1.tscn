@@ -1,4 +1,47 @@
-[gd_scene format=3 uid="uid://bfgcfg183obu"]
+[gd_scene load_steps=15 format=3 uid="uid://bfgcfg183obu"]
+
+[ext_resource type="Texture2D" uid="uid://bd4xxspw40fd4" path="res://assets/scenes/scene1/bg.png" id="1_t413n"]
+[ext_resource type="Script" uid="uid://c4inv3iytyuat" path="res://scenes/scene1.gd" id="1_ug83y"]
+[ext_resource type="PackedScene" uid="uid://bbartondsjpl5" path="res://scenes/ginger.tscn" id="2_td60s"]
+[ext_resource type="Texture2D" uid="uid://bj71ev7ntkoi" path="res://assets/scenes/scene end/scene1end1.png" id="3_f1jql"]
+[ext_resource type="Texture2D" uid="uid://dyh5pa8l51bsa" path="res://assets/scenes/scene1/action.png" id="3_lfno2"]
+[ext_resource type="Texture2D" uid="uid://c62oackn064w3" path="res://assets/scenes/scene end/scene1end2.png" id="4_lfno2"]
+[ext_resource type="Texture2D" uid="uid://cg5d5jecb7jr4" path="res://assets/scenes/scene1/bubble3.png" id="5_rayba"]
+[ext_resource type="Texture2D" uid="uid://rjo2sl8chst5" path="res://assets/scenes/scene end/scene1end3.png" id="5_ug83y"]
+[ext_resource type="Script" uid="uid://dbemceu1k6mlh" path="res://ui/floating.gd" id="6_btauh"]
+[ext_resource type="Texture2D" uid="uid://c1irvgymtdrwd" path="res://assets/scenes/scene end/scene1end4.png" id="6_rayba"]
+[ext_resource type="Texture2D" uid="uid://cukro10dll7va" path="res://assets/scenes/scene end/scene1end5.png" id="7_btauh"]
+[ext_resource type="Texture2D" uid="uid://b85g2uar47pb5" path="res://assets/scenes/scene end/scene1end6.png" id="8_jyay1"]
+[ext_resource type="Texture2D" uid="uid://d0obodccg33at" path="res://assets/scenes/scene end/scene1end7.png" id="9_71dqt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4gngc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_f1jql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lfno2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ug83y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rayba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_btauh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jyay1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_71dqt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Scene1" type="Control"]
 layout_mode = 3
@@ -7,13 +50,58 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ug83y")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_t413n")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="Ginger" parent="." instance=ExtResource("2_td60s")]
+layout_mode = 1
+
+[node name="Action" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_lfno2")
+expand_mode = 3
+
+[node name="Bubble" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+offset_bottom = -97.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_rayba")
+expand_mode = 3
+script = ExtResource("6_btauh")
+
+[node name="SceneEnd" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SceneEnd"]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_4gngc")
+speed_scale = 2.0

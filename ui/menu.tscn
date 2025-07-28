@@ -1,15 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://c10peulru5cpl"]
+[gd_scene load_steps=4 format=3 uid="uid://c10peulru5cpl"]
 
-[ext_resource type="Script" uid="uid://d1mgveq0osep3" path="res://ui/main.gd" id="1_fblgx"]
+[ext_resource type="Script" uid="uid://d1mgveq0osep3" path="res://ui/menu.gd" id="1_udkah"]
+[ext_resource type="Texture2D" uid="uid://b2tntpdbqs2f8" path="res://assets/ui/logoreal2.png" id="2_4c782"]
+[ext_resource type="PackedScene" uid="uid://b14csttlsimot" path="res://ui/options.tscn" id="3_4c782"]
 
-[node name="Main" type="Control"]
+[node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fblgx")
+script = ExtResource("1_udkah")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -18,6 +20,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.647526, 0.620466, 0.643624, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4c782")
+expand_mode = 3
+stretch_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -46,3 +60,15 @@ text = "Options"
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="Options" parent="." instance=ExtResource("3_4c782")]
+visible = false
+layout_mode = 1
+
+[node name="MasterVol" type="AudioStreamPlayer" parent="."]
+
+[node name="MusicVol" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="SFXVol" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

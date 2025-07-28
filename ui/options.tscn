@@ -1,20 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b14csttlsimot"]
+[gd_scene load_steps=2 format=3 uid="uid://b14csttlsimot"]
 
-[sub_resource type="Theme" id="Theme_usno6"]
-
-[sub_resource type="SystemFont" id="SystemFont_usno6"]
-font_names = PackedStringArray("Cascadia Mono")
+[ext_resource type="Script" uid="uid://dfxtuxokbx8m5" path="res://ui/volume.gd" id="1_ymcv4"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,21 +17,71 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
 
-[node name="TabContainer" type="TabContainer" parent="MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
 layout_mode = 2
-theme = SubResource("Theme_usno6")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_constants/side_margin = 0
-theme_override_fonts/font = SubResource("SystemFont_usno6")
-theme_override_font_sizes/font_size = 30
-current_tab = 0
+color = Color(0.885538, 0.85732, 0.857985, 1)
 
-[node name="General" type="TabBar" parent="MarginContainer/TabContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-metadata/_tab_index = 0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Labels" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="GameVol" type="Label" parent="MarginContainer/HBoxContainer/Labels"]
+layout_mode = 2
+text = "Game Volume"
+horizontal_alignment = 1
+
+[node name="MusicVol" type="Label" parent="MarginContainer/HBoxContainer/Labels"]
+layout_mode = 2
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="SFXVol" type="Label" parent="MarginContainer/HBoxContainer/Labels"]
+layout_mode = 2
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="GameVol" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+rounded = true
+script = ExtResource("1_ymcv4")
+bus = "Master"
+
+[node name="MusicVol" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+rounded = true
+script = ExtResource("1_ymcv4")
+bus = "Music"
+
+[node name="SFXVol" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+rounded = true
+script = ExtResource("1_ymcv4")
+bus = "SFX"
