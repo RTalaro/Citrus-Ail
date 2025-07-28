@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://qsca0o38dlig"]
+
+[ext_resource type="Script" uid="uid://ctk0kxakshhd7" path="res://ui/credits.gd" id="1_ed0b0"]
+
+[sub_resource type="SystemFont" id="SystemFont_orljq"]
+font_names = PackedStringArray("MS PGothic")
+
+[sub_resource type="SystemFont" id="SystemFont_74u3g"]
+font_names = PackedStringArray("MS UI Gothic")
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bagf"]
+paragraph_spacing = -50.0
+font = SubResource("SystemFont_74u3g")
+font_size = 60
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_icdkc"]
+font_names = PackedStringArray("Yu Gothic")
+
+[sub_resource type="LabelSettings" id="LabelSettings_42u7w"]
+line_spacing = 10.0
+font = SubResource("SystemFont_icdkc")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_d0gn6"]
+font_names = PackedStringArray("Yu Gothic")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dyfqb"]
+line_spacing = 5.0
+font = SubResource("SystemFont_d0gn6")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ed0b0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_orljq")
+theme_override_font_sizes/font_size = 60
+text = "Credits"
+label_settings = SubResource("LabelSettings_1bagf")
+horizontal_alignment = 1
+
+[node name="Role" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_orljq")
+theme_override_font_sizes/font_size = 60
+text = "Design"
+label_settings = SubResource("LabelSettings_42u7w")
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_top = 375
+theme_override_constants/margin_right = 100
+
+[node name="Name" type="Label" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_orljq")
+theme_override_font_sizes/font_size = 60
+text = "Reece Talaro"
+label_settings = SubResource("LabelSettings_dyfqb")
+horizontal_alignment = 1
