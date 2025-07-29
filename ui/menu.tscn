@@ -13,16 +13,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_udkah")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="BG" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.647526, 0.620466, 0.643624, 1)
+color = Color(0.61803, 0.642423, 0.566909, 1)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Logo" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,6 +64,7 @@ text = "Quit"
 [node name="Options" parent="." instance=ExtResource("3_4c782")]
 visible = false
 layout_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="MasterVol" type="AudioStreamPlayer" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bfgcfg183obu"]
+[gd_scene load_steps=18 format=3 uid="uid://bfgcfg183obu"]
 
 [ext_resource type="Texture2D" uid="uid://bd4xxspw40fd4" path="res://assets/scenes/scene1/bg.png" id="1_t413n"]
 [ext_resource type="PackedScene" uid="uid://bbartondsjpl5" path="res://scenes/ginger.tscn" id="2_td60s"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dbemceu1k6mlh" path="res://ui/floating.gd" id="6_btauh"]
 [ext_resource type="Texture2D" uid="uid://c1irvgymtdrwd" path="res://assets/scenes/scene end/scene1end4.png" id="6_rayba"]
 [ext_resource type="Texture2D" uid="uid://cukro10dll7va" path="res://assets/scenes/scene end/scene1end5.png" id="7_btauh"]
+[ext_resource type="Texture2D" uid="uid://kcbmmtxrnh35" path="res://assets/scenes/scene1/bubble0.png" id="7_jyay1"]
 [ext_resource type="Texture2D" uid="uid://b85g2uar47pb5" path="res://assets/scenes/scene end/scene1end6.png" id="8_jyay1"]
 [ext_resource type="Texture2D" uid="uid://d0obodccg33at" path="res://assets/scenes/scene end/scene1end7.png" id="9_71dqt"]
 
@@ -98,13 +99,108 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -106.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_rayba")
+expand_mode = 3
+script = ExtResource("6_btauh")
+metadata/_edit_lock_ = true
+
+[node name="Text" type="Label" parent="Dialogue/Bubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 130.0
+offset_top = 119.0
+offset_right = -638.0
+offset_bottom = -367.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Text"
+label_settings = SubResource("LabelSettings_jyay1")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+language = "en"
+
+[node name="Choice1" type="TextureRect" parent="Dialogue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -43.0
+offset_right = 96.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_jyay1")
+expand_mode = 3
+script = ExtResource("6_btauh")
+
+[node name="Text" type="Label" parent="Dialogue/Choice1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = 305.0
+offset_right = -815.0
+offset_bottom = -181.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Text"
+label_settings = SubResource("LabelSettings_jyay1")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+language = "en"
+
+[node name="Choice2" type="TextureRect" parent="Dialogue"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_rayba")
 expand_mode = 3
 script = ExtResource("6_btauh")
 
-[node name="Text" type="Label" parent="Dialogue/Bubble"]
+[node name="Text" type="Label" parent="Dialogue/Choice2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 130.0
+offset_top = 89.0
+offset_right = -638.0
+offset_bottom = -397.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Text"
+label_settings = SubResource("LabelSettings_jyay1")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+language = "en"
+
+[node name="Choice3" type="TextureRect" parent="Dialogue"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_rayba")
+expand_mode = 3
+script = ExtResource("6_btauh")
+
+[node name="Text" type="Label" parent="Dialogue/Choice3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
