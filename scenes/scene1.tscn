@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfgcfg183obu"]
+[gd_scene load_steps=17 format=3 uid="uid://bfgcfg183obu"]
 
 [ext_resource type="Texture2D" uid="uid://bd4xxspw40fd4" path="res://assets/scenes/scene1/bg.png" id="1_t413n"]
-[ext_resource type="Script" uid="uid://c4inv3iytyuat" path="res://scenes/scene1.gd" id="1_ug83y"]
 [ext_resource type="PackedScene" uid="uid://bbartondsjpl5" path="res://scenes/ginger.tscn" id="2_td60s"]
 [ext_resource type="Texture2D" uid="uid://bj71ev7ntkoi" path="res://assets/scenes/scene end/scene1end1.png" id="3_f1jql"]
 [ext_resource type="Texture2D" uid="uid://dyh5pa8l51bsa" path="res://assets/scenes/scene1/action.png" id="3_lfno2"]
 [ext_resource type="Texture2D" uid="uid://c62oackn064w3" path="res://assets/scenes/scene end/scene1end2.png" id="4_lfno2"]
+[ext_resource type="Script" uid="uid://b22jmsfuu3lu5" path="res://scenes/dialogue.gd" id="5_jyay1"]
 [ext_resource type="Texture2D" uid="uid://cg5d5jecb7jr4" path="res://assets/scenes/scene1/bubble3.png" id="5_rayba"]
 [ext_resource type="Texture2D" uid="uid://rjo2sl8chst5" path="res://assets/scenes/scene end/scene1end3.png" id="5_ug83y"]
 [ext_resource type="Script" uid="uid://dbemceu1k6mlh" path="res://ui/floating.gd" id="6_btauh"]
@@ -13,6 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://cukro10dll7va" path="res://assets/scenes/scene end/scene1end5.png" id="7_btauh"]
 [ext_resource type="Texture2D" uid="uid://b85g2uar47pb5" path="res://assets/scenes/scene end/scene1end6.png" id="8_jyay1"]
 [ext_resource type="Texture2D" uid="uid://d0obodccg33at" path="res://assets/scenes/scene end/scene1end7.png" id="9_71dqt"]
+
+[sub_resource type="SystemFont" id="SystemFont_btauh"]
+font_names = PackedStringArray("Fira Mono")
+
+[sub_resource type="LabelSettings" id="LabelSettings_jyay1"]
+font = SubResource("SystemFont_btauh")
+font_size = 25
+font_color = Color(0.492156, 0.395497, 0.335793, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4gngc"]
 animations = [{
@@ -39,7 +47,7 @@ animations = [{
 "texture": ExtResource("9_71dqt")
 }],
 "loop": true,
-"name": &"default",
+"name": &"end",
 "speed": 5.0
 }]
 
@@ -50,7 +58,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ug83y")
 
 [node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -77,18 +84,45 @@ grow_vertical = 2
 texture = ExtResource("3_lfno2")
 expand_mode = 3
 
-[node name="Bubble" type="TextureRect" parent="."]
+[node name="Dialogue" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1.0
-offset_bottom = -97.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_jyay1")
+
+[node name="Bubble" type="TextureRect" parent="Dialogue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_rayba")
 expand_mode = 3
 script = ExtResource("6_btauh")
+
+[node name="Text" type="Label" parent="Dialogue/Bubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 130.0
+offset_top = 89.0
+offset_right = -638.0
+offset_bottom = -397.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Text"
+label_settings = SubResource("LabelSettings_jyay1")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+language = "en"
+
+[node name="Timer" type="Timer" parent="Dialogue"]
 
 [node name="SceneEnd" type="Control" parent="."]
 visible = false
@@ -104,4 +138,5 @@ grow_vertical = 2
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SceneEnd"]
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_4gngc")
+animation = &"end"
 speed_scale = 2.0

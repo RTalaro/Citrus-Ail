@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbartondsjpl5"]
+[gd_scene load_steps=11 format=3 uid="uid://bbartondsjpl5"]
 
 [ext_resource type="Texture2D" uid="uid://b67lho0vvrdyd" path="res://assets/scenes/scene1/walk1.png" id="1_fjlh2"]
 [ext_resource type="Texture2D" uid="uid://bo3j3h5vh6kof" path="res://assets/scenes/scene1/walk2.png" id="2_mpjk0"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://gbuus2cqfcuc" path="res://assets/scenes/scene1/walkhand1.png" id="3_ybvwm"]
 [ext_resource type="Texture2D" uid="uid://c1pldeu14fm7i" path="res://assets/scenes/scene1/hair2.png" id="4_8crw5"]
 [ext_resource type="Texture2D" uid="uid://dd0rpk3t5l667" path="res://assets/scenes/scene1/walkhand2.png" id="4_j8yn7"]
+[ext_resource type="Texture2D" uid="uid://b7t7fbjdix6is" path="res://assets/scenes/scene1/face1.png" id="7_ktche"]
+[ext_resource type="Texture2D" uid="uid://6ajb6n0da0w6" path="res://assets/scenes/scene1/face2.png" id="8_lvd0j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rjskg"]
 animations = [{
@@ -45,7 +47,13 @@ animations = [{
 "name": &"hair",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ktche")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lvd0j")
+}],
 "loop": true,
 "name": &"turn",
 "speed": 5.0
@@ -73,5 +81,4 @@ modulate = Color(0.931898, 0.931897, 0.931897, 1)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_ybvwm")
 animation = &"hair"
-frame_progress = 0.560248
 speed_scale = 0.1
