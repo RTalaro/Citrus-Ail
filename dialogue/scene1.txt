@@ -1,19 +1,19 @@
 Scene 1
 G: Then I said, “Try me!”
 G: And I got beat big time.
-G: It was still fun though. Have you ever played pool?
-(Pause 2)
+G: It was still fun though.
+G: Have you ever played pool? (choice)
 
-(Action)
-1: Once, except I kicked butt unlike someone here.
+A: Once, except I kicked butt unlike someone here.
+A: Not yet, but I want to.
+A: Ehh, not really into that kind of thing.
+
+G: If you haven't yet, you should give it a shot!
 G: Hey! I tried my best, okay?! It’s only uphill from here!
-
-2: Not yet, but I want to.
 G: Oh, I could teach you!
-
-3: Ehh, not really into that kind of thing.
 G: Daarn.
 
+(Action)
 (Pause 2)
 G: Y’know, I really like how sunny it is right now.
 G: I miss this kind of weather during the school year.
@@ -22,18 +22,21 @@ G: when I have to worry about exams and club work…
 (Pause 2)
 G: So… what about rollercoasters?
 
-1: What about rollercoasters?
+A: What about rollercoasters?
+A: They’re fine. Not my thing.
+A: I’m tall enough to ride.
+
+G: I was a real daredevil when I was younger but I'm done with that life.
 G: Well, can you ride them? Like, do you get dizzy?
-
-2: They’re fine. Not my thing.
 G: Gosh… so picky. Kidding.
-
-3: I’m tall enough to ride.
 G: I know that much, geez…
 
-G: I’ve never won at any of the carnival games but my older sister is really good at them.
-G: One time, I was playing ring toss, and I accidentally flung the ring backwards,
-G: Hit her straight in the face… I wasn’t allowed into her room for a week.
+G: I’ve never won at any of the carnival games,
+G: but my older sister is really good at them.
+G: I was playing ring toss once,
+G: and I accidentally flung the ring backwards…
+G: Hit her straight in the face…
+G: I wasn’t allowed into her room for a week.
 (Pause 1)
 G: It’s been a long time since I’ve been to an amusement park.
 G: We used to go a lot when I was younger but I guess I’m too old for that now.
@@ -49,6 +52,5 @@ G: Hey, are you listening?
 3: Pretty crazy, yeah.
 G: Yeah… someday, for sure.
 
-(End)
-We should go together!
 (Turn)
+We should go together!

@@ -9,7 +9,11 @@ var next_scene = preload("res://scenes/scene1.tscn").instantiate()
 
 # $Menu/Scene/Dialogue
 var dialogue : Control
-var action : TextureRect
+var bubble : TextureRect
+var choice1 : TextureButton
+var choice2 : TextureButton
+var choice3 : TextureButton
+var action : TextureButton
 var Ginger : Control
 var timer : Timer
 
@@ -29,6 +33,7 @@ func _ready():
 
 func on_options_button_pressed() -> void:
 	print('open options')
+	$Options.visible = true
 
 func on_quit_button_pressed() -> void:
 	print('quit game')
@@ -45,20 +50,41 @@ func on_scene1_end():
 	await timer.timeout
 	timer.queue_free()
 	$Scene/Ginger/Face.play("hair")
+	Ginger = $Scene/Ginger
 	action = $Scene/Action
 	dialogue = $Scene/Dialogue
+	bubble = $Scene/Dialogue/Bubble
+	choice1 = $Scene/Dialogue/Choice1
+	choice2 = $Scene/Dialogue/Choice2
+	choice3 = $Scene/Dialogue/Choice3
+	timer = $Scene/Dialogue/Timer
+	action.mouse_entered.connect(on_action_taken)
 	dialogue.action_ready.connect(on_action_ready)
-	dialogue.scene_end.connect(start_scene)
+	choice1.button_down.connect(on_choice_selected)
+	choice2.button_down.connect(on_choice_selected)
+	choice3.button_down.connect(on_choice_selected)
+	dialogue.turn.connect(on_turn)
+	dialogue.scene_end.connect(on_scene_start)
 	dialogue.run_dialogue("res://dialogue/scene1.txt")
 	
 
 
-func start_scene():
-	# play scene end animation
+func on_scene_start(line):
+	#debug only
+	scene_num = 1
+	
 	if scene_num:
+		# play scene end animation
 		$Scene/SceneEnd.visible = true
 		$Scene/SceneEnd/AnimatedSprite2D.play("end")
-		await $Scene/SceneEnd/AnimatedSprite2D.animation_finished
+		$Scene/SceneEnd/AnimatedSprite2D2.play("end")
+		await $Scene/SceneEnd/AnimatedSprite2D2.animation_finished
+		
+		#print her final line
+		$Scene/SceneEnd/FinalLine/Text.text = line
+		$Scene/SceneEnd/FinalLine.visible = true
+		timer.start(1)
+		await timer.timeout
 	
 	# update scene info and load next scene
 	if scene_num: old_scene = $Scene
@@ -70,31 +96,59 @@ func start_scene():
 	if scene_num: old_scene.queue_free()
 	else:
 		$Scene/Ginger/Body.play("walk")
-		# to align both animations
-		timer = Timer.new()
-		add_child(timer)
-		timer.start(.4)
-		await timer.timeout
-		timer.queue_free()
 		$Scene/Ginger/Face.play("hair")
 	next_scene.name = "Scene"
 	
-	# start next scene
+	# connect all scene nodes/signals
 	Ginger = $Scene/Ginger
 	action = $Scene/Action
 	dialogue = $Scene/Dialogue
+	bubble = $Scene/Dialogue/Bubble
+	choice1 = $Scene/Dialogue/Choice1
+	choice2 = $Scene/Dialogue/Choice2
+	choice3 = $Scene/Dialogue/Choice3
 	timer = $Scene/Dialogue/Timer
+	action.mouse_entered.connect(on_action_taken)
 	dialogue.action_ready.connect(on_action_ready)
-	dialogue.scene_end.connect(start_scene)
+	choice1.button_down.connect(on_choice_selected)
+	choice2.button_down.connect(on_choice_selected)
+	choice3.button_down.connect(on_choice_selected)
+	dialogue.scene_end.connect(on_scene_start)
+	dialogue.turn.connect(on_turn)
+	
+	# run dialogue
 	dialogue.run_dialogue(dialogue_path)
+
+func on_action_taken():
+	print("action taken")
+	var tween = create_tween()
+	tween.tween_property(action, "modulate:a", 0, 1.5)
+	await tween.finished
+	action.visible = false
+	$Scene/Ginger/Body.play("walkhand")
+	$Scene/Ginger/Face.play("hair")
+	
 
 func on_action_ready():
 	print("show action")
 	action.set_modulate(Color(1,1,1,0)) # REMOVE FOR SUBMISSION AND MAKE ACTION OPACITY 0
 	action.visible = true
-	var tween = create_tween()
-	tween.tween_property(action, "modulate:a", 1, 2)
-	tween.set_loops(INF)
-	tween.tween_property(action, "modulate:a", 0.5, 2)
-	tween.tween_property(action, "modulate:a", 0.75, 2)
-	action.visible = true
+	var tween = create_tween().set_loops(INF)
+	tween.tween_property(action, "modulate:a", 0.75, 1.5)
+	tween.tween_property(action, "modulate:a", 0.25, 1.5)
+
+func on_choice_selected():
+	print("choice selected")
+	var tween = create_tween().set_parallel()
+	tween.tween_property(choice1, "modulate:a", 0, 1)
+	tween.tween_property(choice2, "modulate:a", 0, 1)
+	tween.tween_property(choice3, "modulate:a", 0, 1)
+	await tween.finished
+	choice1.visible = false
+	choice2.visible = false
+	choice3.visible = false
+
+func on_turn():
+	$Scene/Ginger/Body.stop()
+	$Scene/Ginger/Face.stop()
+	$Scene/Ginger/Face.play("turn")

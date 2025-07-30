@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c10peulru5cpl"]
+[gd_scene load_steps=5 format=3 uid="uid://c10peulru5cpl"]
 
 [ext_resource type="Script" uid="uid://d1mgveq0osep3" path="res://ui/menu.gd" id="1_udkah"]
 [ext_resource type="Texture2D" uid="uid://b2tntpdbqs2f8" path="res://assets/ui/logoreal2.png" id="2_4c782"]
 [ext_resource type="PackedScene" uid="uid://b14csttlsimot" path="res://ui/options.tscn" id="3_4c782"]
+[ext_resource type="AudioStream" uid="uid://f4kkkxof5vig" path="res://assets/BGM.mp3" id="4_2ot4n"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -66,10 +67,11 @@ visible = false
 layout_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="MasterVol" type="AudioStreamPlayer" parent="."]
-
 [node name="MusicVol" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2ot4n")
+autoplay = true
 bus = &"Music"
+parameters/looping = true
 
 [node name="SFXVol" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
