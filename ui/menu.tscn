@@ -21,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.61803, 0.642423, 0.566909, 1)
+color = Color(0.677882, 0.820951, 0.941468, 1)
 
 [node name="Logo" type="TextureRect" parent="."]
 layout_mode = 1
@@ -64,6 +64,7 @@ text = "Quit"
 
 [node name="Options" parent="." instance=ExtResource("3_4c782")]
 visible = false
+top_level = true
 layout_mode = 1
 metadata/_edit_lock_ = true
 
