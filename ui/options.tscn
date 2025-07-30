@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://b14csttlsimot"]
+[gd_scene load_steps=9 format=3 uid="uid://b14csttlsimot"]
 
 [ext_resource type="Texture2D" uid="uid://cq22y86rw5bn8" path="res://assets/ui/options_bg.png" id="1_usno6"]
 [ext_resource type="Script" uid="uid://cvh8pf45ddv82" path="res://ui/options.gd" id="1_vg7j1"]
 [ext_resource type="Script" uid="uid://dfxtuxokbx8m5" path="res://ui/volume.gd" id="1_ymcv4"]
+[ext_resource type="Texture2D" uid="uid://bg2327p53k1m7" path="res://assets/ui/menu_bg.png" id="2_bnx2y"]
+[ext_resource type="Texture2D" uid="uid://bknhswj0hl2we" path="res://assets/ui/options_exit.PNG" id="3_e4rtv"]
+[ext_resource type="Script" uid="uid://b3insxdjyk0y8" path="res://ui/exit_button.gd" id="4_63ajr"]
 
 [sub_resource type="SystemFont" id="SystemFont_vg7j1"]
 font_names = PackedStringArray("UD Digi Kyokasho NK-R")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_dnk7n"]
 font = SubResource("SystemFont_vg7j1")
@@ -21,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vg7j1")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Dim" type="ColorRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.180392)
 layout_mode = 1
 anchors_preset = 15
@@ -30,66 +34,124 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MenuBG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_bnx2y")
+expand_mode = 5
+stretch_mode = 6
+metadata/_edit_lock_ = true
+
+[node name="TextureButton" type="TextureButton" parent="MenuBG"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -102.0
+offset_right = 149.0
+offset_bottom = -19.0
+grow_vertical = 0
+rotation = -0.0384029
+texture_normal = ExtResource("3_e4rtv")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("4_63ajr")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -43.75
+offset_bottom = 43.75
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
+metadata/_edit_lock_ = true
 
-[node name="ColorRect2" type="TextureRect" parent="MarginContainer"]
+[node name="InGameBG" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="TextureRect" parent="MarginContainer/InGameBG"]
 layout_mode = 2
 texture = ExtResource("1_usno6")
 expand_mode = 5
 stretch_mode = 6
 
-[node name="ColorRect3" type="TextureRect" parent="MarginContainer"]
+[node name="ColorRect4" type="TextureRect" parent="MarginContainer/InGameBG"]
+layout_mode = 2
+texture = ExtResource("1_usno6")
+expand_mode = 5
+stretch_mode = 6
+flip_v = true
+
+[node name="ColorRect5" type="TextureRect" parent="MarginContainer/InGameBG"]
+layout_mode = 2
+texture = ExtResource("1_usno6")
+expand_mode = 5
+stretch_mode = 6
+flip_h = true
+flip_v = true
+
+[node name="ColorRect3" type="TextureRect" parent="MarginContainer/InGameBG"]
 layout_mode = 2
 texture = ExtResource("1_usno6")
 expand_mode = 5
 stretch_mode = 6
 flip_h = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+offset_left = 100.0
+offset_top = 56.25
+offset_right = 1052.0
+offset_bottom = 591.25
+mouse_filter = 2
 theme_override_constants/separation = 50
 alignment = 1
+metadata/_edit_lock_ = true
 
-[node name="Labels" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Labels" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="GameVol" type="Label" parent="MarginContainer/HBoxContainer/Labels"]
+[node name="GameVol" type="Label" parent="HBoxContainer/Labels"]
 layout_mode = 2
 text = "Game Volume"
 label_settings = SubResource("LabelSettings_dnk7n")
 horizontal_alignment = 1
 
-[node name="MusicVol" type="Label" parent="MarginContainer/HBoxContainer/Labels"]
+[node name="MusicVol" type="Label" parent="HBoxContainer/Labels"]
 layout_mode = 2
 text = "Music Volume"
 label_settings = SubResource("LabelSettings_dnk7n")
 horizontal_alignment = 1
 
-[node name="SFXVol" type="Label" parent="MarginContainer/HBoxContainer/Labels"]
+[node name="SFXVol" type="Label" parent="HBoxContainer/Labels"]
 layout_mode = 2
 text = "SFX Volume"
 label_settings = SubResource("LabelSettings_dnk7n")
 horizontal_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 28
 alignment = 1
 
-[node name="GameVol" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="GameVol" type="HSlider" parent="HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 focus_mode = 0
@@ -99,7 +161,7 @@ value = 1.0
 script = ExtResource("1_ymcv4")
 bus = "Master"
 
-[node name="MusicVol" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="MusicVol" type="HSlider" parent="HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 focus_mode = 0
@@ -109,7 +171,7 @@ value = 1.0
 script = ExtResource("1_ymcv4")
 bus = "Music"
 
-[node name="SFXVol" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+[node name="SFXVol" type="HSlider" parent="HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 focus_mode = 0
