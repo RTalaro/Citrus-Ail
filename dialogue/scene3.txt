@@ -2,15 +2,16 @@ Scene 3
 G: But I really get scared to think that it’s coming to an end soon.
 G: This summer youth feels so free…
 G: I’m not ready to start school again.
+(Pause 2)
+(Action)
 
-You’ll be ok.
+A: You’ll be ok.
+A: …
+A: Me too.
+
 G: …
-
-…
 G: …
-
-Me too.
 G: …
-
-Thank you for being here.
+(Pause 5)
 (Turn)
+Thank you for being here.

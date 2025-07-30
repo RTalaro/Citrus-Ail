@@ -1,9 +1,6 @@
 Scene 1
 G: Then I said, “Try me!”
-(Action)
 G: And I got beat big time.
-
-(Turn)
 G: It was still fun though.
 G: Have you ever played pool? (choice)
 
@@ -23,7 +20,7 @@ G: I miss this kind of weather during the school year.
 G: I don’t even have time to think about the weather,
 G: when I have to worry about exams and club work…
 (Pause 2)
-G: So… what about rollercoasters?
+G: So… what about rollercoasters? (choice)
 
 A: What about rollercoasters?
 A: They’re fine. Not my thing.
@@ -44,16 +41,15 @@ G: I wasn’t allowed into her room for a week.
 G: It’s been a long time since I’ve been to an amusement park.
 G: We used to go a lot when I was younger but I guess I’m too old for that now.
 G: But even though I’ve been there plenty of times, I’ve never been on a ferris wheel.
-G: Crazy, right?
+G: Crazy, right? (choice)
 
-1: Eh, I haven’t been on one either.
+A: Eh, I haven’t been on one either.
+A: Huh?
+A: Pretty crazy, yeah.
+
 G: Really?
-
-2: Huh?
-G: Hey, are you listening?
-
-3: Pretty crazy, yeah.
-G: Yeah… someday, for sure.
+G: You're not even listening but that's ok.
+G: Yeah… someday.
 
 (Turn)
 We should go together!

@@ -1,15 +1,12 @@
 Scene 5
-(Silence 5)
-G: I don’t want to go.
 (Pause 5)
-G: I’m not ready yet.
+G: I don’t want to go.
+(Action)
+(Pause 5)
+G: I’m not ready yet. (choice)
 
-We’re still here.
+A: We’re still here.
+A: You’re still here.
+A: I’m still here.
 
-You’re still here.
-
-I’m still here.
-
-G: …
-G: Hey, can we
 (Turn)

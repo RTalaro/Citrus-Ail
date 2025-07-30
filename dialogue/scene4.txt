@@ -1,21 +1,21 @@
 Scene 4
+(Action)
 G: You do?
 G: That’s cool…
 G: You could totally do that.
+(Pause 2)
+G: Can you guess what I want to be? (choice)
 
-(Pause)
-G: Can you guess what I want to be?
+A: I don’t know.
+A: A queen.
+A: A doctor?
 
-I don’t know.
 G: Aw, you won’t even guess?
-
-A queen.
 G: No way, I can’t even take care of a plant!
-
-A doctor?
 G: Mm, that doesn’t sound too bad.
 
+(Pause 1)
 G: I want to be a pilot.
 G: I want to be up there with the birds and the sky.
-G: You’ll let me fly you, right?
 (Turn)
+Someday, I'll take you there.

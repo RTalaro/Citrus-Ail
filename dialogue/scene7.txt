@@ -2,13 +2,13 @@ Scene 7
 G: Radio, letter, tin can telephone—
 G: Hey. Why do you look like you’re about to laugh?
 
-Tin can telephone from that far?
+A: Tin can telephone from that far?
+A: Do you know how to work a radio?
+A: We have cell phones, we don’t need letters.
+
+G: Hmph.
 G: If there’s a will, there’s a way.
-
-Do you know how to work a radio?
 G: Who says I can’t learn?
-
-We have cell phones, we don’t need letters.
 G: Yeah, but what if you lose my number? Then what?
 
 
@@ -17,5 +17,7 @@ G: Keep in touch, yeah?
 G: Don’t get too lonely without me around.
 G: Tell me all about your first days of college.
 G: Then when you get out of school next summer…
-G: Maybe we can meet again!
-(Look up)
+
+PC: Here.
+(Pause 10)
+G: 

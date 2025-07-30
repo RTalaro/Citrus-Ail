@@ -1,37 +1,37 @@
 Scene 2
 G: This boss is too hard!!
 G: He moves too much, and I run out of MP too quickly!
-G: How does anyone enjoy this?
+G: How does anyone enjoy this? (choice)
 
-You get better over time.
+A: You get better over time.
+A: Just get good.
+A: You don’t have to keep playing, y’know.
+
 G: I guess…
-
-Just get good.
 G: Wah, you’re so mean…
-
-You don’t have to keep playing, y’know.
 G: Are you telling me to give up?!
 
-(Pause)
+(Pause 2)
 G: Wait, am I dea—
-(TV goes dark)
-(Controller down)
+
+(Pause 5)
 G: …
 G: Again.
-G: Never back down, never what?!
+G: Never back down, never what?! (choice)
 
-Never give up!
+A: Never give up!
+A: Never…?
+A: No.
+
 G: Never give uuuup!
-
-Never…?
+G: Oh, man. You’re getting old.
 G: Oh, man. You’re getting old.
 
+(Action)
 G: Watch and learn.
-(Controller up)
-(Phone buzzes)
 G: Climb the mountain, bam.
 G: Sort your party, bam.
 G: Don’t forget to save like I did last time!
 G: Bam.
-G: Are you watching?
 (Turn)
+G: Are you watching?
