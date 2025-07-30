@@ -26,6 +26,7 @@ layout/style_directory={}
 [display]
 
 window/size/resizable=false
+mouse_cursor/custom_image="uid://b1dhsbvpp2a1c"
 
 [input]
 

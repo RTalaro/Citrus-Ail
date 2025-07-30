@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c10peulru5cpl"]
+[gd_scene load_steps=6 format=3 uid="uid://c10peulru5cpl"]
 
 [ext_resource type="Script" uid="uid://d1mgveq0osep3" path="res://ui/menu.gd" id="1_udkah"]
 [ext_resource type="Texture2D" uid="uid://b2tntpdbqs2f8" path="res://assets/ui/logoreal2.png" id="2_4c782"]
+[ext_resource type="Texture2D" uid="uid://bg2327p53k1m7" path="res://assets/ui/menu_bg.png" id="2_fcydj"]
 [ext_resource type="PackedScene" uid="uid://b14csttlsimot" path="res://ui/options.tscn" id="3_4c782"]
 [ext_resource type="AudioStream" uid="uid://f4kkkxof5vig" path="res://assets/BGM.mp3" id="4_2ot4n"]
 
@@ -14,14 +15,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_udkah")
 
-[node name="BG" type="ColorRect" parent="."]
+[node name="BG2" type="TextureRect" parent="."]
+modulate = Color(0.81372, 0.893957, 0.968558, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.677882, 0.820951, 0.941468, 1)
+texture = ExtResource("2_fcydj")
+expand_mode = 5
 
 [node name="Logo" type="TextureRect" parent="."]
 layout_mode = 1

@@ -27,13 +27,23 @@ func _ready():
 	# connect all signals
 	play.button_down.connect(on_scene1_end)
 	#play.button_down.connect(on_scene_end)
+	# ignore game pause
+	process_mode = 3
+	options.process_mode = 3
+	$MusicVol.process_mode = 3
+	$SFXVol.process_mode = 3
 	options.button_down.connect(on_options_button_pressed)
+	options.visibility_changed.connect(on_game_pause)
 	quit.button_down.connect(on_quit_button_pressed)
 
 
 func on_options_button_pressed() -> void:
 	print('open options')
 	$Options.visible = true
+
+func on_game_pause() -> void:
+	print("toggle pause")
+	get_tree().paused = !get_tree().paused
 
 func on_quit_button_pressed() -> void:
 	print('quit game')
@@ -43,12 +53,14 @@ func on_quit_button_pressed() -> void:
 func on_scene1_end():
 	add_child(next_scene)
 	next_scene.name = "Scene"
+	next_scene.process_mode = 1
 	$Scene/Ginger/Body.play("walk")
-	timer = Timer.new()
-	add_child(timer)
-	timer.start(.4)
-	await timer.timeout
-	timer.queue_free()
+	# realign animation
+	#timer = Timer.new()
+	#add_child(timer)
+	#timer.start(.4)
+	#await timer.timeout
+	#timer.queue_free()
 	$Scene/Ginger/Face.play("hair")
 	Ginger = $Scene/Ginger
 	action = $Scene/Action
@@ -91,7 +103,7 @@ func on_scene_start(line):
 	add_child(next_scene)
 	scene_num += 1
 	dialogue_path = "res://dialogue/scene%d.txt" % (scene_num)
-	next_scene_path = "res://scenes/scene%d.tscn" % (scene_num+1)
+	next_scene_path = "res://scenes/scene%d.tscn" % (scene_num + 1)
 	next_scene = load(next_scene_path).instantiate()
 	if scene_num: old_scene.queue_free()
 	else:

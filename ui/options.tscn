@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://b14csttlsimot"]
+[gd_scene load_steps=6 format=3 uid="uid://b14csttlsimot"]
 
+[ext_resource type="Texture2D" uid="uid://cq22y86rw5bn8" path="res://assets/ui/options_bg.png" id="1_usno6"]
+[ext_resource type="Script" uid="uid://cvh8pf45ddv82" path="res://ui/options.gd" id="1_vg7j1"]
 [ext_resource type="Script" uid="uid://dfxtuxokbx8m5" path="res://ui/volume.gd" id="1_ymcv4"]
+
+[sub_resource type="SystemFont" id="SystemFont_vg7j1"]
+font_names = PackedStringArray("UD Digi Kyokasho NK-R")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dnk7n"]
+font = SubResource("SystemFont_vg7j1")
+font_size = 20
+font_color = Color(0.630419, 0.417294, 0.31955, 1)
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -9,6 +19,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_vg7j1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.180392)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -22,9 +43,18 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+[node name="ColorRect2" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
-color = Color(0.885538, 0.85732, 0.857985, 1)
+texture = ExtResource("1_usno6")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="ColorRect3" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_usno6")
+expand_mode = 5
+stretch_mode = 6
+flip_h = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -39,16 +69,19 @@ alignment = 1
 [node name="GameVol" type="Label" parent="MarginContainer/HBoxContainer/Labels"]
 layout_mode = 2
 text = "Game Volume"
+label_settings = SubResource("LabelSettings_dnk7n")
 horizontal_alignment = 1
 
 [node name="MusicVol" type="Label" parent="MarginContainer/HBoxContainer/Labels"]
 layout_mode = 2
 text = "Music Volume"
+label_settings = SubResource("LabelSettings_dnk7n")
 horizontal_alignment = 1
 
 [node name="SFXVol" type="Label" parent="MarginContainer/HBoxContainer/Labels"]
 layout_mode = 2
 text = "SFX Volume"
+label_settings = SubResource("LabelSettings_dnk7n")
 horizontal_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
@@ -59,6 +92,7 @@ alignment = 1
 [node name="GameVol" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+focus_mode = 0
 max_value = 1.0
 step = 0.001
 value = 1.0
@@ -68,6 +102,7 @@ bus = "Master"
 [node name="MusicVol" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+focus_mode = 0
 max_value = 1.0
 step = 0.001
 value = 1.0
@@ -77,6 +112,7 @@ bus = "Music"
 [node name="SFXVol" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+focus_mode = 0
 max_value = 1.0
 step = 0.001
 value = 1.0
