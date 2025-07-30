@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://qsca0o38dlig"]
+[gd_scene load_steps=10 format=3 uid="uid://qsca0o38dlig"]
 
 [ext_resource type="Script" uid="uid://ctk0kxakshhd7" path="res://ui/credits.gd" id="1_ed0b0"]
 
@@ -34,6 +34,13 @@ font = SubResource("SystemFont_d0gn6")
 font_size = 40
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_icdkc"]
+line_spacing = 5.0
+paragraph_spacing = -3.0
+font = SubResource("SystemFont_d0gn6")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
 [node name="Credits" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -59,7 +66,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 600
-theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
@@ -94,7 +100,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 600
-theme_override_constants/margin_top = 375
+theme_override_constants/margin_top = 345
 theme_override_constants/margin_right = 100
 
 [node name="Name" type="Label" parent="MarginContainer2"]
@@ -105,4 +111,24 @@ theme_override_fonts/font = SubResource("SystemFont_orljq")
 theme_override_font_sizes/font_size = 60
 text = "Reece Talaro"
 label_settings = SubResource("LabelSettings_dyfqb")
+horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_top = 410
+theme_override_constants/margin_right = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3"]
+layout_mode = 2
+
+[node name="GodotLabel" type="Label" parent="MarginContainer3/VBoxContainer"]
+layout_mode = 2
+text = "Made with Godot 4.4.1"
+label_settings = SubResource("LabelSettings_icdkc")
 horizontal_alignment = 1
