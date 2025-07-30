@@ -87,9 +87,11 @@ grow_vertical = 2
 texture = ExtResource("1_t413n")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_lock_ = true
 
 [node name="Ginger" parent="." instance=ExtResource("2_td60s")]
 layout_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="Action" type="TextureButton" parent="."]
 visible = false
@@ -103,6 +105,7 @@ texture_normal = ExtResource("3_lfno2")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("4_4gngc")
+metadata/_edit_lock_ = true
 
 [node name="Dialogue" type="Control" parent="."]
 layout_mode = 1
