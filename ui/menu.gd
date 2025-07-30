@@ -149,6 +149,10 @@ func on_choice_selected():
 	choice3.visible = false
 
 func on_turn():
+	var tween = create_tween()
+	tween.tween_property(action, "modulate:a", 0, 1)
+	await tween.finished
+	action.visible = false
 	$Scene/Ginger/Body.stop()
 	$Scene/Ginger/Face.stop()
 	$Scene/Ginger/Face.play("turn")

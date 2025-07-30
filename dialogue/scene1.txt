@@ -1,6 +1,9 @@
 Scene 1
 G: Then I said, “Try me!”
+(Action)
 G: And I got beat big time.
+
+(Turn)
 G: It was still fun though.
 G: Have you ever played pool? (choice)
 

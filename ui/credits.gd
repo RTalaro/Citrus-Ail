@@ -41,7 +41,6 @@ func _ready() -> void:
 func set_credits(role_name: String, member_name: String):
 	timer.start(1)
 	await timer.timeout
-	#print("timer 1 done")
 	
 	role.text = role_name
 	member.text = member_name
@@ -52,7 +51,6 @@ func set_credits(role_name: String, member_name: String):
 	
 	timer.start(5)
 	await timer.timeout
-	#print("timer 5 done")
 	
 	if(role_name != "Sound"):
 		tween = create_tween().set_parallel()
