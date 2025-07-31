@@ -38,15 +38,12 @@ func _ready():
 
 
 func on_options_button_pressed() -> void:
-	print('open options')
 	$Options.visible = true
 
 func on_game_pause() -> void:
-	print("toggle pause")
 	get_tree().paused = !get_tree().paused
 
 func on_quit_button_pressed() -> void:
-	print('quit game')
 	get_tree().quit()
 
 # for testing
@@ -151,11 +148,15 @@ func on_action_ready():
 
 func on_choice_selected():
 	print("choice selected")
+	choice1.disabled = true
+	choice2.disabled = true
+	choice3.disabled = true
 	var tween = create_tween().set_parallel()
 	tween.tween_property(choice1, "modulate:a", 0, 1)
 	tween.tween_property(choice2, "modulate:a", 0, 1)
 	tween.tween_property(choice3, "modulate:a", 0, 1)
 	await tween.finished
+
 	choice1.visible = false
 	choice2.visible = false
 	choice3.visible = false

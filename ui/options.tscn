@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dfxtuxokbx8m5" path="res://ui/volume.gd" id="1_ymcv4"]
 [ext_resource type="Texture2D" uid="uid://bg2327p53k1m7" path="res://assets/ui/menu_bg.png" id="2_bnx2y"]
 [ext_resource type="Texture2D" uid="uid://bknhswj0hl2we" path="res://assets/ui/options_exit.PNG" id="3_e4rtv"]
-[ext_resource type="Script" uid="uid://b3insxdjyk0y8" path="res://ui/exit_button.gd" id="4_63ajr"]
+[ext_resource type="Script" uid="uid://b3insxdjyk0y8" path="res://ui/button_mask.gd" id="4_63ajr"]
 
 [sub_resource type="SystemFont" id="SystemFont_vg7j1"]
 font_names = PackedStringArray("UD Digi Kyokasho NK-R")

@@ -1,5 +1,6 @@
 Scene 1
 G: Then I said, “Try me!”
+(Turn)
 G: And I got beat big time.
 G: It was still fun though.
 G: Have you ever played pool? (choice)
@@ -33,14 +34,11 @@ G: I know that much, geez…
 
 G: I’ve never won at any of the carnival games,
 G: but my older sister is really good at them.
-G: I was playing ring toss once,
-G: and I accidentally flung the ring backwards…
-G: Hit her straight in the face…
-G: I wasn’t allowed into her room for a week.
 (Pause 1)
 G: It’s been a long time since I’ve been to an amusement park.
-G: We used to go a lot when I was younger but I guess I’m too old for that now.
-G: But even though I’ve been there plenty of times, I’ve never been on a ferris wheel.
+G: We used to go a lot when I was younger,
+G: but I guess I’m too old for that now.
+G: Even though I’ve been there plenty of times, I’ve never been on a ferris wheel.
 G: Crazy, right? (choice)
 
 A: Eh, I haven’t been on one either.

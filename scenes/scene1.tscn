@@ -116,7 +116,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("5_jyay1")
-turn_duration = 2.0
+turn_duration = 2.97
 
 [node name="Bubble" type="TextureRect" parent="Dialogue"]
 layout_mode = 1

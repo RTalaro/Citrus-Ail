@@ -18,6 +18,8 @@ var dialogue
 var seconds : float
 # current line
 var line : String
+# number of lines processed
+var lines : int = 0
 # selected choice
 var choice_num : int = 0
 # duration of pause after turn animation
@@ -41,6 +43,10 @@ func _ready() -> void:
 	choice1.visible = false # REMOVE FOR SUBMISSION AND SET TO INVISIBLE
 	choice2.visible = false # REMOVE FOR SUBMISSION AND SET TO INVISIBLE
 	choice3.visible = false # REMOVE FOR SUBMISSION AND SET TO INVISIBLE
+	
+	choice1.disabled = true
+	choice2.disabled = true
+	choice3.disabled = true
 	choice1.button_down.connect(on_choice1_down)
 	choice2.button_down.connect(on_choice2_down)
 	choice3.button_down.connect(on_choice3_down)
@@ -54,6 +60,7 @@ func run_dialogue(dialogue_path):
 	text_ginger.text = ''
 	while not dialogue.eof_reached():
 		line = dialogue.get_line()
+		lines += 1
 		seconds = 0
 		print(line)
 		
@@ -64,6 +71,7 @@ func run_dialogue(dialogue_path):
 		if line.begins_with("G: "):
 			seconds = 2
 			if line.contains("(choice)"):
+				choice_num = 0
 				seconds = 0
 				line = line.erase(line.length()-8, line.length()-1)
 			text_ginger.visible_characters = 0
@@ -83,9 +91,11 @@ func run_dialogue(dialogue_path):
 			text_choice1.text = line.erase(0,2)
 			choice2.visible = true
 			line = dialogue.get_line()
+			lines += 1
 			text_choice2.text = line.erase(0,2)
 			choice3.visible = true
 			line = dialogue.get_line()
+			lines += 1
 			text_choice3.text = line.erase(0,2)
 			var tween = create_tween().set_parallel()
 			tween.tween_property(choice1, "modulate:a", 1, 1)
@@ -93,8 +103,13 @@ func run_dialogue(dialogue_path):
 			tween.tween_property(choice3, "modulate:a", 1, 1)
 			await tween.finished
 			# give player 5 seconds to respond
+			print("start choice timer")
 			choice_timer.start(5)
+			choice1.disabled = false
+			choice2.disabled = false
+			choice3.disabled = false
 			await choice_end
+			print("choice end received")
 		
 		elif line.contains("Pause"):
 			print("fade out")
@@ -107,6 +122,7 @@ func run_dialogue(dialogue_path):
 			turn.emit()
 			seconds = turn_duration
 			line = dialogue.get_line()
+			lines += 1
 			#debug
 			timer.start(seconds)
 			await timer.timeout
@@ -143,6 +159,7 @@ func on_choice_end():
 	# read ginger's dialogue
 	for i in range(choice_num + 2):
 		line = dialogue.get_line()
+		lines += 1
 	print(choice_num)
 	print(line)
 	seconds = 2
@@ -165,8 +182,6 @@ func on_choice_end():
 	# realign dialogue
 	for i in range(3 - choice_num):
 		line = dialogue.get_line()
+		lines += 1
 	
-	choice1.disabled = false
-	choice2.disabled = false
-	choice3.disabled = false
 	choice_end.emit()
