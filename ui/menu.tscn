@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://bg2327p53k1m7" path="res://assets/ui/menu_bg.png" id="2_fcydj"]
 [ext_resource type="PackedScene" uid="uid://b14csttlsimot" path="res://ui/options.tscn" id="3_4c782"]
 [ext_resource type="AudioStream" uid="uid://f4kkkxof5vig" path="res://assets/BGM.mp3" id="4_2ot4n"]
-[ext_resource type="Texture2D" uid="uid://cxxtfbw5nw842" path="res://assets/ui/menu_play_big.png" id="4_cp6tm"]
+[ext_resource type="Texture2D" uid="uid://bqyan8s3ap4hd" path="res://assets/ui/menu_play_small.png" id="4_cp6tm"]
 [ext_resource type="Script" uid="uid://b3insxdjyk0y8" path="res://ui/button_mask.gd" id="5_2fd1n"]
-[ext_resource type="Texture2D" uid="uid://dtf7vx1bqry8d" path="res://assets/ui/menu_options_big.png" id="6_cop0s"]
-[ext_resource type="Texture2D" uid="uid://c4trmsvnsyvrk" path="res://assets/ui/menu_quit_big.png" id="7_oumb1"]
+[ext_resource type="Texture2D" uid="uid://ww84n0wtxkju" path="res://assets/ui/menu_options_small.png" id="6_2fd1n"]
+[ext_resource type="Texture2D" uid="uid://dehwwmwuc5b46" path="res://assets/ui/menu_quit_small.png" id="7_cop0s"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -53,14 +53,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 800
-theme_override_constants/margin_top = 190
+theme_override_constants/margin_top = 210
 theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 45
 metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = -100
+theme_override_constants/separation = -200
 
 [node name="Play" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -73,7 +72,7 @@ script = ExtResource("5_2fd1n")
 [node name="Options" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture_normal = ExtResource("6_cop0s")
+texture_normal = ExtResource("6_2fd1n")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("5_2fd1n")
@@ -81,7 +80,7 @@ script = ExtResource("5_2fd1n")
 [node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture_normal = ExtResource("7_oumb1")
+texture_normal = ExtResource("7_cop0s")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("5_2fd1n")

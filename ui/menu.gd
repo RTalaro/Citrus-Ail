@@ -25,8 +25,8 @@ var old_scene : Node
 
 func _ready():
 	# connect all signals
-	play.button_down.connect(on_scene1_end)
-	#play.button_down.connect(on_scene_end)
+	#play.button_down.connect(on_scene1_end)
+	play.button_down.connect(on_scene_start.bind(''))
 	# ignore game pause
 	process_mode = 3
 	options.process_mode = 3
@@ -46,42 +46,8 @@ func on_game_pause() -> void:
 func on_quit_button_pressed() -> void:
 	get_tree().quit()
 
-# for testing
-func on_scene1_end():
-	add_child(next_scene)
-	next_scene.name = "Scene"
-	next_scene.process_mode = 1
-	$Scene/Ginger/Body.play("walk")
-	# realign animation
-	#timer = Timer.new()
-	#add_child(timer)
-	#timer.start(.4)
-	#await timer.timeout
-	#timer.queue_free()
-	$Scene/Ginger/Face.play("hair")
-	Ginger = $Scene/Ginger
-	action = $Scene/Action
-	dialogue = $Scene/Dialogue
-	bubble = $Scene/Dialogue/Bubble
-	choice1 = $Scene/Dialogue/Choice1
-	choice2 = $Scene/Dialogue/Choice2
-	choice3 = $Scene/Dialogue/Choice3
-	timer = $Scene/Dialogue/Timer
-	action.mouse_entered.connect(on_action_taken)
-	dialogue.action_ready.connect(on_action_ready)
-	choice1.button_down.connect(on_choice_selected)
-	choice2.button_down.connect(on_choice_selected)
-	choice3.button_down.connect(on_choice_selected)
-	dialogue.turn.connect(on_turn)
-	dialogue.scene_end.connect(on_scene_start)
-	dialogue.run_dialogue("res://dialogue/scene1.txt")
-	
-
 
 func on_scene_start(line):
-	#debug only
-	scene_num = 1
-	
 	if scene_num:
 		# play scene end animation
 		$Scene/SceneEnd.visible = true
@@ -98,15 +64,18 @@ func on_scene_start(line):
 	# update scene info and load next scene
 	if scene_num: old_scene = $Scene
 	add_child(next_scene)
+	if scene_num:
+		remove_child(old_scene)
+		old_scene.queue_free()
+	next_scene.name = "Scene"
+	print(next_scene.name)
+	
 	scene_num += 1
 	dialogue_path = "res://dialogue/scene%d.txt" % (scene_num)
 	next_scene_path = "res://scenes/scene%d.tscn" % (scene_num + 1)
 	next_scene = load(next_scene_path).instantiate()
-	if scene_num: old_scene.queue_free()
-	else:
-		$Scene/Ginger/Body.play("walk")
-		$Scene/Ginger/Face.play("hair")
-	next_scene.name = "Scene"
+	#if scene_num: old_scene.queue_free()
+	#next_scene.name = "Scene"
 	
 	# connect all scene nodes/signals
 	Ginger = $Scene/Ginger
@@ -124,6 +93,11 @@ func on_scene_start(line):
 	choice3.button_down.connect(on_choice_selected)
 	dialogue.scene_end.connect(on_scene_start)
 	dialogue.turn.connect(on_turn)
+	
+	# start scene
+	if scene_num == 1:
+		$Scene/Ginger/Body.play("walk")
+		$Scene/Ginger/Face.play("hair")
 	
 	# run dialogue
 	dialogue.run_dialogue(dialogue_path)
@@ -173,3 +147,34 @@ func on_turn():
 func _input(event) -> void:
 	if event.is_action_pressed("options"):
 		$Options.visible = !$Options.visible
+
+
+# for testing
+#func on_scene1_end():
+	#add_child(next_scene)
+	#next_scene.name = "Scene"
+	#next_scene.process_mode = 1
+	#$Scene/Ginger/Body.play("walk")
+	# realign animation
+	#timer = Timer.new()
+	#add_child(timer)
+	#timer.start(.4)
+	#await timer.timeout
+	#timer.queue_free()
+	#$Scene/Ginger/Face.play("hair")
+	#Ginger = $Scene/Ginger
+	#action = $Scene/Action
+	#dialogue = $Scene/Dialogue
+	#bubble = $Scene/Dialogue/Bubble
+	#choice1 = $Scene/Dialogue/Choice1
+	#choice2 = $Scene/Dialogue/Choice2
+	#choice3 = $Scene/Dialogue/Choice3
+	#timer = $Scene/Dialogue/Timer
+	#action.mouse_entered.connect(on_action_taken)
+	#dialogue.action_ready.connect(on_action_ready)
+	#choice1.button_down.connect(on_choice_selected)
+	#choice2.button_down.connect(on_choice_selected)
+	#choice3.button_down.connect(on_choice_selected)
+	#dialogue.turn.connect(on_turn)
+	#dialogue.scene_end.connect(on_scene_start)
+	#dialogue.run_dialogue("res://dialogue/scene1.txt")
