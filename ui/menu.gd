@@ -1,6 +1,7 @@
 extends Control
 
 # preload scene 1
+var opening = preload("res://scenes/opening.tscn").instantiate()
 var next_scene = preload("res://scenes/scene1.tscn").instantiate()
 
 @onready var play = $MarginContainer/VBoxContainer/Play
@@ -24,14 +25,13 @@ var dialogue_path : String
 var old_scene : Node
 
 func _ready():
-	# connect all signals
-	#play.button_down.connect(on_scene1_end)
-	play.button_down.connect(on_scene_start.bind(''))
 	# ignore game pause
 	process_mode = 3
 	options.process_mode = 3
 	$MusicVol.process_mode = 3
 	$SFXVol.process_mode = 3
+	# connect all signals
+	play.button_down.connect(on_play)
 	options.button_down.connect(on_options_button_pressed)
 	options.visibility_changed.connect(on_game_pause)
 	quit.button_down.connect(on_quit_button_pressed)
@@ -47,7 +47,19 @@ func on_quit_button_pressed() -> void:
 	get_tree().quit()
 
 
-func on_scene_start(line):
+func on_play():
+	add_child(opening)
+	timer = Timer.new()
+	add_child(timer)
+	timer.start(3)
+	await timer.timeout
+	remove_child(timer)
+	timer.queue_free()
+	remove_child(opening)
+	opening.queue_free()
+	on_scene_start()
+
+func on_scene_start(line: String = ''):
 	if scene_num:
 		# play scene end animation
 		$Scene/SceneEnd.visible = true
@@ -68,14 +80,11 @@ func on_scene_start(line):
 		remove_child(old_scene)
 		old_scene.queue_free()
 	next_scene.name = "Scene"
-	print(next_scene.name)
 	
 	scene_num += 1
 	dialogue_path = "res://dialogue/scene%d.txt" % (scene_num)
 	next_scene_path = "res://scenes/scene%d.tscn" % (scene_num + 1)
 	next_scene = load(next_scene_path).instantiate()
-	#if scene_num: old_scene.queue_free()
-	#next_scene.name = "Scene"
 	
 	# connect all scene nodes/signals
 	Ginger = $Scene/Ginger
@@ -140,41 +149,10 @@ func on_turn():
 	tween.tween_property(action, "modulate:a", 0, 1)
 	await tween.finished
 	action.visible = false
-	$Scene/Ginger/Body.stop()
-	$Scene/Ginger/Face.stop()
+	$Scene/Ginger/Body.pause()
+	$Scene/Ginger/Face.pause()
 	$Scene/Ginger/Face.play("turn")
 
 func _input(event) -> void:
 	if event.is_action_pressed("options"):
 		$Options.visible = !$Options.visible
-
-
-# for testing
-#func on_scene1_end():
-	#add_child(next_scene)
-	#next_scene.name = "Scene"
-	#next_scene.process_mode = 1
-	#$Scene/Ginger/Body.play("walk")
-	# realign animation
-	#timer = Timer.new()
-	#add_child(timer)
-	#timer.start(.4)
-	#await timer.timeout
-	#timer.queue_free()
-	#$Scene/Ginger/Face.play("hair")
-	#Ginger = $Scene/Ginger
-	#action = $Scene/Action
-	#dialogue = $Scene/Dialogue
-	#bubble = $Scene/Dialogue/Bubble
-	#choice1 = $Scene/Dialogue/Choice1
-	#choice2 = $Scene/Dialogue/Choice2
-	#choice3 = $Scene/Dialogue/Choice3
-	#timer = $Scene/Dialogue/Timer
-	#action.mouse_entered.connect(on_action_taken)
-	#dialogue.action_ready.connect(on_action_ready)
-	#choice1.button_down.connect(on_choice_selected)
-	#choice2.button_down.connect(on_choice_selected)
-	#choice3.button_down.connect(on_choice_selected)
-	#dialogue.turn.connect(on_turn)
-	#dialogue.scene_end.connect(on_scene_start)
-	#dialogue.run_dialogue("res://dialogue/scene1.txt")

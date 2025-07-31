@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cddlntrxdrwwv"]
+
+[ext_resource type="Texture2D" uid="uid://bd4xxspw40fd4" path="res://assets/scenes/scene1/bg.png" id="1_pk062"]
+
+[sub_resource type="SystemFont" id="SystemFont_btauh"]
+font_names = PackedStringArray("Fira Mono")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_pk062"]
+font = SubResource("SystemFont_btauh")
+font_size = 25
+font_color = Color(0.492156, 0.395497, 0.335793, 1)
+
+[node name="Opening" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pk062")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "There's a girl I can't quite recall"
+label_settings = SubResource("LabelSettings_pk062")
+horizontal_alignment = 1
+vertical_alignment = 1

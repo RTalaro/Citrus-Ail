@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb0e16pnkw2ag"
-path="res://.godot/imported/bg.png-9a8c5859d206013e132f7a6f023df27e.ctex"
+uid="uid://dm7dmuw6spkns"
+path="res://.godot/imported/action_reaching.png-2dde177a8d8c543de7c69924e18e26fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/scenes/scene2/bg.png"
-dest_files=["res://.godot/imported/bg.png-9a8c5859d206013e132f7a6f023df27e.ctex"]
+source_file="res://assets/scenes/scene2/action_reaching.png"
+dest_files=["res://.godot/imported/action_reaching.png-2dde177a8d8c543de7c69924e18e26fc.ctex"]
 
 [params]
 
