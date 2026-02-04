@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=3 uid="uid://bpntt7wancmt7"]
 
-[ext_resource type="Texture2D" uid="uid://bd4xxspw40fd4" path="res://assets/scenes/scene1/bg.png" id="1_x38j3"]
+[ext_resource type="Texture2D" uid="uid://cb0e16pnkw2ag" path="res://assets/scenes/scene2/bg.png" id="1_x38j3"]
 [ext_resource type="PackedScene" uid="uid://bbartondsjpl5" path="res://scenes/ginger.tscn" id="2_3eo47"]
-[ext_resource type="Texture2D" uid="uid://dyh5pa8l51bsa" path="res://assets/scenes/scene1/action.png" id="3_kjohx"]
+[ext_resource type="Texture2D" uid="uid://bac6ijkwr6w2s" path="res://assets/scenes/scene2/action.png" id="3_3eo47"]
 [ext_resource type="Script" uid="uid://gr13du2w18hf" path="res://scenes/action.gd" id="4_lslbq"]
 [ext_resource type="Script" uid="uid://b22jmsfuu3lu5" path="res://scenes/dialogue.gd" id="5_ga8du"]
 [ext_resource type="Texture2D" uid="uid://cvluk8sfmghox" path="res://assets/scenes/scene1/bubble.PNG" id="6_aqtpa"]
@@ -69,7 +69,7 @@ font = SubResource("SystemFont_4gngc")
 font_size = 30
 font_color = Color(0.492156, 0.395497, 0.335793, 1)
 
-[node name="Scene1" type="Control"]
+[node name="Scene2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,7 +101,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("3_kjohx")
+texture_normal = ExtResource("3_3eo47")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("4_lslbq")

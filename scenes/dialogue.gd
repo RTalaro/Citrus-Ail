@@ -103,6 +103,8 @@ func run_dialogue(dialogue_path):
 			tween.tween_property(choice3, "modulate:a", 1, 1)
 			await tween.finished
 			# give player 5 seconds to respond
+			# when choice_timer ends, on_choice_end is called
+			# and choice_end is emitted
 			print("start choice timer")
 			choice_timer.start(5)
 			choice1.disabled = false
