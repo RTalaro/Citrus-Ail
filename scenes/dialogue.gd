@@ -1,165 +1,151 @@
 extends Control
 
-@onready var bubble = $Bubble
-@onready var text_ginger = $Bubble/Text
-@onready var timer = $Timer
-@onready var Ginger = $"../Ginger"
-@onready var choice1 = $Choice1
-@onready var text_choice1 = $Choice1/Text
-@onready var choice2 = $Choice2
-@onready var text_choice2 = $Choice2/Text
-@onready var choice3 = $Choice3
-@onready var text_choice3 = $Choice3/Text
-@onready var choice_timer = $ChoiceTimer
-
-# dialogue file
-var dialogue
-# delay after reading line
-var seconds : float
-# current line
-var line : String
-# number of lines processed
-var lines : int = 0
-# selected choice
-var choice_num : int = 0
-# duration of pause after turn animation
-@export var turn_duration : float
-
-# choice either taken or timed out
+## Choice either taken or timed out
 signal choice_end
-# action ready for flashing
+## Action ready for flashing
 signal action_ready
-# ginger ready for turn animation
+## Ginger ready for turn animation
 signal turn
-# end of scene
+## End of scene
 signal scene_end
+
+## Pause after turn animation
+const TURN_SPEED: float = 0.0
+const TEXT_SPEED: float = 0.4
+
+## Dialogue file
+var dialogue: FileAccess
+## Delay after reading line
+var seconds: float
+## Current line
+var line: String
+## Number of lines processed
+var lines: int = 0
+var choice_num: int = 0
+var choice_labels: Array[Label]
+var choice_bubbles: Array[TextureButton]
+
+@onready var bubble: TextureRect = $Bubble
+@onready var text_ginger: Label = $Bubble/Text
+@onready var timer: Timer = $Timer
+@onready var choice_timer: Timer = $ChoiceTimer
 
 
 func _ready() -> void:
-	bubble.set_modulate(Color(1,1,1,0)) # REMOVE FOR SUBMISSION AND SET OPACITY TO 0
-	choice1.set_modulate(Color(1,1,1,0)) # REMOVE FOR SUBMISSION
-	choice2.set_modulate(Color(1,1,1,0)) # REMOVE FOR SUBMISSION
-	choice3.set_modulate(Color(1,1,1,0)) # REMOVE FOR SUBMISSION
-	choice1.visible = false # REMOVE FOR SUBMISSION AND SET TO INVISIBLE
-	choice2.visible = false # REMOVE FOR SUBMISSION AND SET TO INVISIBLE
-	choice3.visible = false # REMOVE FOR SUBMISSION AND SET TO INVISIBLE
-	
-	choice1.disabled = true
-	choice2.disabled = true
-	choice3.disabled = true
-	choice1.button_down.connect(on_choice1_down)
-	choice2.button_down.connect(on_choice2_down)
-	choice3.button_down.connect(on_choice3_down)
+	bubble.set_modulate(Color(1, 1, 1, 0)) ## REMOVE FOR SUBMISSION AND SET OPACITY TO 0
+	for i: int in get_child_count():
+		var choice: Node = get_child(i)
+		if choice is not TextureButton:
+			continue
+		choice_bubbles.append(choice)
+
+		choice_labels.append(choice.get_child(0))
+		choice.set_modulate(Color(1, 1, 1, 0)) ## REMOVE FOR SUBMISSION AND SET OPACITY TO 0
+		choice.hide() ## REMOVE FOR SUBMISSION AND SET TO INVISIBLE
+		choice.disabled = true
+		choice.button_down.connect(on_choice_down.bind(i))
 	choice_timer.timeout.connect(on_choice_end)
 
+
 func run_dialogue(dialogue_path):
-	print("run dialogue")
+	print("run dialogue %s" % dialogue_path)
 	dialogue = FileAccess.open(dialogue_path, FileAccess.READ)
-	
+
 	text_ginger.visible_characters = 0
 	text_ginger.text = ''
 	while not dialogue.eof_reached():
 		line = dialogue.get_line()
 		lines += 1
 		seconds = 0
-		print(line)
-		
+		print("line %s" % line)
+
 		if line == "":
 			continue
-		
-		# ginger's dialogue
+
+		## Ginger's dialogue
 		if line.begins_with("G: "):
 			seconds = 2
 			if line.contains("(choice)"):
 				choice_num = 0
 				seconds = 0
-				line = line.erase(line.length()-8, line.length()-1)
+				line = line.erase(line.length() - 8, line.length() - 1)
 			text_ginger.visible_characters = 0
 			text_ginger.text = ''
-			text_ginger.text = line.erase(0,2)
-			var tween = create_tween()
+			text_ginger.text = line.erase(0, 2)
+			var tween: Tween = create_tween()
 			tween.tween_property(bubble, "modulate:a", 1, 1)
 			while text_ginger.visible_characters != len(text_ginger.text):
-				timer.start(.04)
+				timer.start(TEXT_SPEED)
 				await timer.timeout
+
 				text_ginger.visible_characters += 1
-		
-		# choice section
+
+		## Choice section
 		elif line.begins_with("A: "):
-			# fade in choices
-			choice1.visible = true
-			text_choice1.text = line.erase(0,2)
-			choice2.visible = true
-			line = dialogue.get_line()
-			lines += 1
-			text_choice2.text = line.erase(0,2)
-			choice3.visible = true
-			line = dialogue.get_line()
-			lines += 1
-			text_choice3.text = line.erase(0,2)
-			var tween = create_tween().set_parallel()
-			tween.tween_property(choice1, "modulate:a", 1, 1)
-			tween.tween_property(choice2, "modulate:a", 1, 1)
-			tween.tween_property(choice3, "modulate:a", 1, 1)
+			## Fade in choices
+			for i: int in range(2):
+				var choice: TextureButton = choice_bubbles[i + 1]
+				var label: Label = choice_labels[i + 1]
+				choice.show()
+				if i > 0:
+					line = dialogue.get_line()
+					lines += 1
+				label.text = line.erase(0, 2)
+			var tween: Tween = create_tween().set_parallel()
+			for choice: TextureButton in choice_bubbles:
+				tween.tween_property(choice, "modulate:a", 1, 1)
 			await tween.finished
-			# give player 5 seconds to respond
-			# when choice_timer ends, on_choice_end is called
-			# and choice_end is emitted
+
+			## Give player 5 seconds to respond.
+			## When choice_timer ends, on_choice_end is called
+			## and choice_end is emitted
 			print("start choice timer")
 			choice_timer.start(5)
-			choice1.disabled = false
-			choice2.disabled = false
-			choice3.disabled = false
+			for choice: TextureButton in choice_bubbles:
+				choice.disabled = false
 			await choice_end
+
 			print("choice end received")
-		
+
 		elif line.contains("Pause"):
 			print("fade out")
 			seconds = line.to_int()
-			var tween = create_tween()
+			var tween: Tween = create_tween()
 			tween.tween_property(bubble, "modulate:a", 0, 1)
 		elif line == "(Action)":
 			action_ready.emit()
 		elif line == "(Turn)":
 			turn.emit()
-			seconds = turn_duration
+			seconds = TURN_SPEED
 			line = dialogue.get_line()
 			lines += 1
-			#debug
+			## BUG
 			timer.start(seconds)
 			await timer.timeout
+
 			scene_end.emit(line)
 		timer.start(seconds)
 		await timer.timeout
 
 
+func on_choice_down(num: int):
+	choice_num = num
+	on_choice_end()
 
-
-func on_choice1_down():
-	choice_num = 1
-	on_choice_end()
-func on_choice2_down():
-	choice_num = 2
-	on_choice_end()
-func on_choice3_down():
-	choice_num = 3
-	on_choice_end()
 
 func on_choice_end():
 	print("choice end")
-	choice1.disabled = true
-	choice2.disabled = true
-	choice3.disabled = true
+	for choice: TextureButton in choice_bubbles:
+		choice.disabled = true
 	choice_timer.stop()
-	
-	# fade out choices
-	var tween = create_tween().set_parallel()
-	tween.tween_property(choice1, "modulate:a", 0, 1)
-	tween.tween_property(choice2, "modulate:a", 0, 1)
-	tween.tween_property(choice3, "modulate:a", 0, 1)
-	
-	# read ginger's dialogue
-	for i in range(choice_num + 2):
+
+	var tween: Tween = create_tween().set_parallel()
+	## Fade out choices
+	for choice: TextureButton in choice_bubbles:
+		tween.tween_property(choice, "modulate:a", 0, 1)
+
+	## Read Ginger's dialogue
+	for i: int in range(choice_num + 2):
 		line = dialogue.get_line()
 		lines += 1
 	print(choice_num)
@@ -167,23 +153,25 @@ func on_choice_end():
 	seconds = 2
 	text_ginger.visible_characters = 0
 	text_ginger.text = ''
-	text_ginger.text = line.erase(0,2)
-	# fade in bubble
+	text_ginger.text = line.erase(0, 2)
+	## Fade in bubble
 	tween = create_tween()
 	tween.tween_property(bubble, "modulate:a", 1, 1)
 	await tween.finished
-	choice1.visible = false
-	choice2.visible = false
-	choice3.visible = false
+
+	for choice: TextureButton in choice_bubbles:
+		choice.hide()
 	while text_ginger.visible_characters != len(text_ginger.text):
-		timer.start(.04)
+		timer.start(TEXT_SPEED)
 		await timer.timeout
+
 		text_ginger.visible_characters += 1
 	timer.start(seconds)
 	await timer.timeout
-	# realign dialogue
-	for i in range(3 - choice_num):
+
+	## Realign dialogue
+	for i: int in range(3 - choice_num):
 		line = dialogue.get_line()
 		lines += 1
-	
+
 	choice_end.emit()

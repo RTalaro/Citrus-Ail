@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b14csttlsimot"]
+[gd_scene format=3 uid="uid://b14csttlsimot"]
 
 [ext_resource type="Texture2D" uid="uid://cq22y86rw5bn8" path="res://assets/ui/options_bg.png" id="1_usno6"]
 [ext_resource type="Script" uid="uid://cvh8pf45ddv82" path="res://ui/options.gd" id="1_vg7j1"]
@@ -16,7 +16,7 @@ font = SubResource("SystemFont_vg7j1")
 font_size = 20
 font_color = Color(0.630419, 0.417294, 0.31955, 1)
 
-[node name="Options" type="Control"]
+[node name="Options" type="Control" unique_id=529519325]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vg7j1")
 
-[node name="Dim" type="ColorRect" parent="."]
+[node name="Dim" type="ColorRect" parent="." unique_id=1989698773]
 self_modulate = Color(1, 1, 1, 0.180392)
 layout_mode = 1
 anchors_preset = 15
@@ -36,7 +36,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="MenuBG" type="TextureRect" parent="."]
+[node name="MenuBG" type="TextureRect" parent="." unique_id=1549927525]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +48,7 @@ expand_mode = 5
 stretch_mode = 6
 metadata/_edit_lock_ = true
 
-[node name="TextureButton" type="TextureButton" parent="MenuBG"]
+[node name="ExitButton" type="TextureButton" parent="MenuBG" unique_id=246035864]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -65,7 +65,7 @@ stretch_mode = 4
 script = ExtResource("4_63ajr")
 metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1718638404]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,23 +81,23 @@ theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 metadata/_edit_lock_ = true
 
-[node name="InGameBG" type="MarginContainer" parent="MarginContainer"]
+[node name="InGameBG" type="MarginContainer" parent="MarginContainer" unique_id=1104847353]
 layout_mode = 2
 
-[node name="ColorRect2" type="TextureRect" parent="MarginContainer/InGameBG"]
+[node name="ColorRect2" type="TextureRect" parent="MarginContainer/InGameBG" unique_id=1107869506]
 layout_mode = 2
 texture = ExtResource("1_usno6")
 expand_mode = 5
 stretch_mode = 6
 
-[node name="ColorRect4" type="TextureRect" parent="MarginContainer/InGameBG"]
+[node name="ColorRect4" type="TextureRect" parent="MarginContainer/InGameBG" unique_id=70960575]
 layout_mode = 2
 texture = ExtResource("1_usno6")
 expand_mode = 5
 stretch_mode = 6
 flip_v = true
 
-[node name="ColorRect5" type="TextureRect" parent="MarginContainer/InGameBG"]
+[node name="ColorRect5" type="TextureRect" parent="MarginContainer/InGameBG" unique_id=1248834262]
 layout_mode = 2
 texture = ExtResource("1_usno6")
 expand_mode = 5
@@ -105,15 +105,15 @@ stretch_mode = 6
 flip_h = true
 flip_v = true
 
-[node name="ColorRect3" type="TextureRect" parent="MarginContainer/InGameBG"]
+[node name="ColorRect3" type="TextureRect" parent="MarginContainer/InGameBG" unique_id=729617084]
 layout_mode = 2
 texture = ExtResource("1_usno6")
 expand_mode = 5
 stretch_mode = 6
 flip_h = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1098435115]
+layout_mode = 0
 offset_left = 100.0
 offset_top = 56.25
 offset_right = 1052.0
@@ -123,35 +123,35 @@ theme_override_constants/separation = 50
 alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Labels" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Labels" type="VBoxContainer" parent="HBoxContainer" unique_id=925389842]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="GameVol" type="Label" parent="HBoxContainer/Labels"]
+[node name="GameVol" type="Label" parent="HBoxContainer/Labels" unique_id=738468131]
 layout_mode = 2
 text = "Game Volume"
 label_settings = SubResource("LabelSettings_dnk7n")
 horizontal_alignment = 1
 
-[node name="MusicVol" type="Label" parent="HBoxContainer/Labels"]
+[node name="MusicVol" type="Label" parent="HBoxContainer/Labels" unique_id=1742826062]
 layout_mode = 2
 text = "Music Volume"
 label_settings = SubResource("LabelSettings_dnk7n")
 horizontal_alignment = 1
 
-[node name="SFXVol" type="Label" parent="HBoxContainer/Labels"]
+[node name="SFXVol" type="Label" parent="HBoxContainer/Labels" unique_id=138105953]
 layout_mode = 2
 text = "SFX Volume"
 label_settings = SubResource("LabelSettings_dnk7n")
 horizontal_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=776409154]
 layout_mode = 2
 theme_override_constants/separation = 28
 alignment = 1
 
-[node name="GameVol" type="HSlider" parent="HBoxContainer/VBoxContainer2"]
+[node name="GameVol" type="HSlider" parent="HBoxContainer/VBoxContainer2" unique_id=1069511748]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 focus_mode = 0
@@ -161,7 +161,7 @@ value = 1.0
 script = ExtResource("1_ymcv4")
 bus = "Master"
 
-[node name="MusicVol" type="HSlider" parent="HBoxContainer/VBoxContainer2"]
+[node name="MusicVol" type="HSlider" parent="HBoxContainer/VBoxContainer2" unique_id=16117975]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 focus_mode = 0
@@ -171,7 +171,7 @@ value = 1.0
 script = ExtResource("1_ymcv4")
 bus = "Music"
 
-[node name="SFXVol" type="HSlider" parent="HBoxContainer/VBoxContainer2"]
+[node name="SFXVol" type="HSlider" parent="HBoxContainer/VBoxContainer2" unique_id=1754617801]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 focus_mode = 0
